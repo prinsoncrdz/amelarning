@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { prisma } from '@/lib/prisma';
+
+export const dynamic = 'force-dynamic';
 import { Search, Tag, CreditCard, ArrowRight, BookOpen, CheckCircle2, ShieldCheck, Award } from 'lucide-react';
 
 const hero = 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1000&q=80';
