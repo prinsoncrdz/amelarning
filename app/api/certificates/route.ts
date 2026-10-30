@@ -1,0 +1,2 @@
+import { NextResponse } from 'next/server'; import { requireUser } from '@/lib/auth'; import { prisma } from '@/lib/prisma';
+export async function GET(){try{const u=await requireUser();const certs=await prisma.certificate.findMany({where:{userId:u.id},orderBy:{completionDate:'desc'}});return NextResponse.json({certificates:certs});}catch{return NextResponse.json({error:'Unauthorized'},{status:401})}}

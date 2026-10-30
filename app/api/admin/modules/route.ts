@@ -1,0 +1,2 @@
+import { NextResponse } from 'next/server'; import { requireUser } from '@/lib/auth'; import { prisma } from '@/lib/prisma';
+export async function POST(req:Request){try{const u=await requireUser();if(u.role==='STUDENT')return NextResponse.json({error:'Forbidden'},{status:403});const b=await req.json();const m=await prisma.module.create({data:{courseId:b.courseId,title:b.title,description:b.description,order:Number(b.order)}});return NextResponse.json({module:m},{status:201})}catch{return NextResponse.json({error:'Could not create module'},{status:400})}}

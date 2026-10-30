@@ -1,0 +1,2 @@
+import { NextResponse } from 'next/server'; import { prisma } from '@/lib/prisma';
+export async function GET(_:Request,{params}:{params:Promise<{number:string}>}){const {number}=await params;const c=await prisma.certificate.findUnique({where:{certificateNumber:number}});if(!c)return NextResponse.json({valid:false},{status:404});return NextResponse.json({valid:true,certificate:{certificateNumber:c.certificateNumber,studentName:c.studentName,courseTitle:c.courseTitle,completionDate:c.completionDate,instructorName:c.instructorName}})}
